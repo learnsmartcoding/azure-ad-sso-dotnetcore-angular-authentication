@@ -1,0 +1,66 @@
+/* General Container Styles */
+.container {
+  margin-top: 20px;
+}
+
+/* Header Styles */
+h1 {
+  margin-bottom: 30px; /* Add more space below the header */
+  font-size: 2.5rem; /* Increase font size for emphasis */
+  font-weight: bold; /* Make the header text bold */
+}
+
+/* Button Group Styles */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 20px; /* Add space below the button group */
+}
+
+.button-group .btn {
+  flex: 1; /* Make buttons expand to fit available space */
+  max-width: 150px; /* Limit button width */
+}
+
+/* Table Styles */
+.table {
+  margin-bottom: 20px;
+}
+
+/* JSON Display Styles */
+.json-container {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+
+  .table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table td {
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+    margin-bottom: 10px;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+}

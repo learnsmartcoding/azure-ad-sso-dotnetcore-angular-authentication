@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "ExpenseTracker.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:40351/",
+      "sslPort": 40351
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json"
+}

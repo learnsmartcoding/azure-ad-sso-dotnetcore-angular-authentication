@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="d-flex flex-column mb-3 text-center">
+    <!-- Header -->
+    <h1>
+      {{title}}
+    </h1>
+
+    <!-- Button Group -->
+    <div class="button-group">
+      <ng-container *ngIf="!loginDisplay">
+        <button mat-menu-item class="btn btn-primary" (click)="loginRedirect()">Login using Redirect</button>
+        <button mat-menu-item class="btn btn-primary" (click)="loginPopup()">Login using Popup</button>
+      </ng-container>
+      <ng-container *ngIf="loginDisplay">
+        <button mat-menu-item class="btn btn-secondary" (click)="logout()">Logout using Redirect</button>
+        <button mat-menu-item class="btn btn-secondary" (click)="logout(true)">Logout using Popup</button>
+      </ng-container>
+      <button mat-menu-item class="btn btn-info" (click)="getCreditCard()">Credit Cards</button>
+      <button mat-menu-item class="btn btn-info" (click)="getClaimsFromAPI()">Claims from API</button>
+      <button mat-menu-item class="btn btn-info" (click)="getPublicEndpointData()">Non Authorized API Call</button>
+      <div class="card">
+        <div class="card-body">
+          <b>This Application is "Expense Tracker" Azure AD | Demo | App 2</b>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- JSON Display -->
+  <h2>Claims based on Bearer Token served from Server API</h2>
+  <div class="json-container">
+    {{claimsFromApi | json}}
+  </div>
+</div>
+
+<!-- Claims Section -->
+<section *ngIf="claims">
+  <div class="container">
+    <h2>Claims based on Bearer Token</h2>
+    <table class="table table-hover" *ngIf="claims.length">
+      <thead>
+        <tr>
+          <th>Claim</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of claims">
+          <td>{{c.claim}}</td>
+          <td>{{c.value}}</td>
+          <td>{{c.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<br>
+<hr>
+
+
+<!-- Router Outlet -->
+<div class="container">
+  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+  <ng-container *ngIf="!isIframe">
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>
