@@ -46,6 +46,35 @@ ng serve --port 4300
 ### 5. For Web API project to run follow the steps
 - There is a database script named "ExpenseTrackingApp.sql". make sure you run this database script and create the database in local
 
-### Video Walkthrough
+### Video Walkthrough : Azure AD + SSO (With 2 Applications)
 For a detailed step-by-step guide, please refer to the video tutorial:  
 **[Azure AD Authentication & SSO with .NET Core 8 & Angular 18](https://www.youtube.com/watch?v=SB1_zI11REI)**
+
+### Video Walkthrough : Azure AD Roles & Security Groups | Setup & Integration for .NET Core API & Angular
+In the JSON manifest, locate the appRoles property and add the roles you want. Here is an example of an admin role:
+```
+{
+			"allowedMemberTypes": [
+				"User"
+			],
+			"description": "User role for accessing the application",
+			"displayName": "User",
+			"id": "8c8694bd-8e25-4d57-9656-66122cbf8e68",
+			"isEnabled": true,
+			"origin": "Application",
+			"value": "User"
+		},
+		{
+			"allowedMemberTypes": [
+				"User"
+			],
+			"description": "Admin role for managing the application",
+			"displayName": "Admin",
+			"id": "ee4b3a10-2388-44b6-8d5f-134939288551",
+			"isEnabled": true,
+			"origin": "Application",
+			"value": "Admin"
+		}
+    ```
+For a detailed step-by-step guide, please refer to the video tutorial:  
+**[Azure AD Roles & Security Groups | Setup & Integration for .NET Core API & Angular](https://www.youtube.com/watch?v=VLbfh_kDwG4)**

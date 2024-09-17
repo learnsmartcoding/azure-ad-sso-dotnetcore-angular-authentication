@@ -46,4 +46,30 @@ azure ad user credentials, it will not work after 15 days of I created, comment 
 
 karthik@learnsmartcodinggmail.onmicrosoft.com or kannan@learnsmartcodinggmail.onmicrosoft.com
 LSCamu745406
+
+
+Roles to add in manifest
+
+	{
+			"allowedMemberTypes": [
+				"User"
+			],
+			"description": "User role for accessing the application",
+			"displayName": "User",
+			"id": "8c8694bd-8e25-4d57-9656-66122cbf8e68",
+			"isEnabled": true,
+			"origin": "Application",
+			"value": "User"
+		},
+		{
+			"allowedMemberTypes": [
+				"User"
+			],
+			"description": "Admin role for managing the application",
+			"displayName": "Admin",
+			"id": "ee4b3a10-2388-44b6-8d5f-134939288551",
+			"isEnabled": true,
+			"origin": "Application",
+			"value": "Admin"
+		}
 */
