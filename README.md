@@ -51,7 +51,13 @@ For a detailed step-by-step guide, please refer to the video tutorial:
 **[Azure AD Authentication & SSO with .NET Core 8 & Angular 18](https://www.youtube.com/watch?v=SB1_zI11REI)**
 
 ### Video Walkthrough : Azure AD Roles & Security Groups | Setup & Integration for .NET Core API & Angular
-In the JSON manifest, locate the appRoles property and add the roles you want. Here is an example of an admin role:
+
+In the JSON manifest, locate the appRoles property and add the roles you want. 
+
+For a detailed step-by-step guide, please refer to the video tutorial:  
+**[Azure AD Roles & Security Groups | Setup & Integration for .NET Core API & Angular](https://www.youtube.com/watch?v=VLbfh_kDwG4)**
+
+Here is an example of an admin role:
 ```
 {
 			"allowedMemberTypes": [
@@ -76,5 +82,4 @@ In the JSON manifest, locate the appRoles property and add the roles you want. H
 			"value": "Admin"
 		}
     ```
-For a detailed step-by-step guide, please refer to the video tutorial:  
-**[Azure AD Roles & Security Groups | Setup & Integration for .NET Core API & Angular](https://www.youtube.com/watch?v=VLbfh_kDwG4)**
+
