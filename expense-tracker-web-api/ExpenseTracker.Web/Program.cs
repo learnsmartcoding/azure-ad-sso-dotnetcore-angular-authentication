@@ -113,7 +113,37 @@ namespace ExpenseTracker
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExpenseTracker API", Version = "v1" });
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "swaggerAADdemo", Version = "v1" });
+
+                    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                    {
+                        Description = "OAuth2.0 Auth Code with PKCE",
+                        Name = "oauth2",
+                        Type = SecuritySchemeType.OAuth2,
+                        Flows = new OpenApiOAuthFlows
+                        {
+                            AuthorizationCode = new OpenApiOAuthFlow
+                            {                               
+                                AuthorizationUrl = new Uri($"https://login.microsoftonline.com/{configuration["AzureAd:TenantId"]}/oauth2/v2.0/authorize"),
+                                TokenUrl = new Uri($"https://login.microsoftonline.com/{configuration["AzureAd:TenantId"]}/oauth2/v2.0/token"),
+                                Scopes = new Dictionary<string, string>
+                                {
+                                    { $"api://{configuration["AzureAd:ClientId"]}/Expense.Read", "Read access to Expense API" },
+                                    { $"api://{configuration["AzureAd:ClientId"]}/Expense.Write", "Write access to Expense API" }
+                                }
+                            }
+                        }
+                    });
+                    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
+                        },
+                        new[] { $"api://{configuration["AzureAd:ClientId"]}/Expense.Read", $"api://{configuration["AzureAd:ClientId"]}/Expense.Write" }
+        }
+                });
                 });
 
                 //before this step, install dotnet EF and run commands to pull db entities. E.g. scaffold
@@ -180,7 +210,14 @@ namespace ExpenseTracker
                 {
                     app.UseDeveloperExceptionPage();
                     app.UseSwagger();
-                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ExpenseTracker API v1"));
+                    app.UseSwaggerUI(c =>
+                    {
+                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Expense Tracker API v1");
+                        c.OAuthClientId(configuration["AzureAd:SwaggerClientId"]);
+                        c.OAuthUsePkce(); // Enables PKCE flow for security
+                        c.OAuthScopeSeparator(" ");
+                    });
+
                 }
 
 
@@ -205,7 +242,7 @@ namespace ExpenseTracker
                 Log.CloseAndFlush();
             }
 
-            
+
         }
     }
 }
